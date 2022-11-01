@@ -1,0 +1,187 @@
+<mvc:View controllerName="sync.c201.booking.controller.View3"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core"
+    xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" height="100%"
+    xmlns:fb="sap.ui.comp.filterbar" xmlns:f="sap.f" >
+    <Page showNavButton="false" backgroundDesign="Solid">
+        <headerContent>
+            <Toolbar id="toolbar1">
+                <ObjectHeader title="옵션 선택"/>
+                <ToolbarSpacer/>
+                <Button text="이전 화면" press="onNavBack" class=""/>
+                <Button text="선택 완료" press="onSelect" 
+                    class="sapUiMediumMarginEnd" type="Emphasized"/>
+            </Toolbar>
+        </headerContent>
+        <HBox width="100%">
+            <VBox width="60%">
+                <Text text="" class="sapUiMediumMarginTop"/>
+                <form:SimpleForm id="form1" class="sapUiMediumMarginBegin"
+                    editable="false" backgroundDesign="Solid"
+                    layout="ResponsiveGridLayout"
+                    title="옵션 사항"
+                    adjustLabelSpan="false" 
+                    labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12"
+                    emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0"
+                    columnsXL="1"   columnsL="1"   columnsM="1"
+                    singleContainerFullSize="false" >
+                    <Text text="*선택 가능한 시간대 외에 Check-In하실 경우 Early Check-In을 선택하여주세요."
+                        class="sapUiTinyMarginBegin"/>
+                    <Table id="table" inset="false" 
+                        items="{
+                        path: 'view3>/oOptData'
+                        }"
+                        mode="None" selectionChange="onPressItem">
+                        <columns>
+                            <Column width="25%">
+                                <Text text="옵션 명"/>
+                            </Column>
+                            <Column width="45%">
+                                <Text text="Price"/>
+                            </Column>
+                            <Column width="10%" hAlign="Center">
+                                <Text text="" />
+                            </Column>
+                            <Column width="10%" hAlign="Center">
+                                <Text text="수량" />
+                            </Column>
+                            <Column width="10%" hAlign="Center">
+                                <Text text="" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem id="items" vAlign="Middle">
+                                <cells>
+                                    <Text text="{view3>Option}"/>
+                                    <Text text="{view3>Price}" textAlign="End"/>
+                                    <Button icon="sap-icon://less" class="sapUiTinyMarginBegin"
+                                        press="onLess"/>
+                                    <Text text="{view3>Quantity}" textAlign="Center"/>
+                                    <Button icon="sap-icon://add" class="sapUiTinyMarginEnd"
+                                        press="onAdd"/>
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                    <Label text="예상 도착 시간" labelFor="ETA" class="sapUiSmallMarginTop sapUiSmallMarginEnd"/>
+                    <ComboBox id="ETA" class="sapUiSmallMarginBottom sapUiMediumMarginBegin sapUiTinyMarginTop"
+                        selectionChange="onSelectETA" width="10rem" 
+                        placeholder="예상 도착 시간"
+                        items="{ 
+                            path: 'view3>/oETA',
+                            templateShareable: true
+                            }">
+                        <core:Item key="{view3>key}" text="{view3>name}"/>
+                    </ComboBox>
+                </form:SimpleForm>
+                <form:SimpleForm class="sapUiMediumMarginBegin sapUiMediumMarginTop"
+                    editable="false" backgroundDesign="Solid"
+                    title="추가 요청사항" >
+                    <TextArea id="textArea" value="" maxLength="255" width="100%" height="5rem" 
+                        placeholder="호텔 이용 시 문의할 사항이 있으시면 입력해 주십시오."/>
+                </form:SimpleForm>
+            </VBox>
+
+            <VBox width="40%" backgroundDesign="Transparent">
+                <Text text="" class="sapUiMediumMarginTop"/>
+                <form:SimpleForm id="form2" class="sapUiMediumMarginBegin"
+                    editable="false" backgroundDesign="Solid"
+                    layout="ResponsiveGridLayout"
+                    title="가격 정보">
+                    <f:DynamicPage id="page"
+                        stickySubheaderProvider="iconTabBar"
+                        class="sapUiNoContentPadding" headerExpanded="false"
+                        toggleHeaderOnTitleClick="{/titleClickable}">
+                        <f:title>
+                            <f:DynamicPageTitle id="InfoHeader" >
+                                <f:heading>
+                                    <Title text="{InputData>/sRoomClass}" titleStyle="H2"/>
+                                </f:heading>
+                                <f:expandedContent>
+                                    <Title text="*상세 내역"/>
+                                </f:expandedContent>
+                                <f:snappedContent>
+                                    <ObjectAttribute title="예약 기간 " text="{InputData>/sDateInfo}" 
+                                        class="sapUiTinyMargin"/>
+                                    <ObjectAttribute title="객실 가격 " class="sapUiTinyMargin"
+                                        text="{InputData>/sTotalRoomPrice}"/>
+                                    <ObjectAttribute id="snapOpt" title="옵션 가격 " class="sapUiTinyMargin"
+                                        text="{InputData>/sTotalOptPrice}"/>
+                                    <ObjectAttribute title="등급 할인 " class="sapUiTinyMargin" 
+                                        text="{InputData>/sCustDiscountPrice}" />
+
+                                    <Text text="요금 합계" class="sapUiMediumMarginTop sapUiMediumMarginBegin"/>
+                                    <Title text="{InputData>/sFinalPrice}" titleStyle="H1" width="23rem"
+                                        textAlign="End" class="sapUiLargeMarginEnd"/>
+                                </f:snappedContent>
+                            </f:DynamicPageTitle>
+                        </f:title>
+                        <f:header>
+                            <f:DynamicPageHeader pinnable="true">
+                                <layout:HorizontalLayout allowWrapping="true">
+                                    <layout:VerticalLayout class="sapUiMediumMarginEnd">
+
+                                        <Title text="객실 가격" titleStyle="H4" width="23rem"
+                                            textAlign="Begin" class="sapUiSmallMarginBegin"/>
+                                        <ObjectAttribute title="호텔 지점 " class=" sapUiMediumMarginBegin"
+                                            text="{InputData>/sPlant}"/>
+                                        <ObjectAttribute title="예약 기간 " class=" sapUiMediumMarginBegin"
+                                            text="{InputData>/sDateInfo}"/>
+                                        <ObjectAttribute title="기준 가격 " class=" sapUiMediumMarginBegin"
+                                            text="{InputData>/sPrice}"/>
+                                        <ObjectStatus text="평일({InputData>/iWeekDay})    : {InputData>/sWeekDayPrice}" 
+                                            state="None" class="sapUiLargeMarginBegin"/>
+                                        <ObjectStatus text="주말({InputData>/iWeekendDay}) : {InputData>/sWeekendPrice}"
+                                            state="None" class="sapUiLargeMarginBegin"/>
+                                        <ObjectStatus text="휴일({InputData>/iHoliday})    : {InputData>/sHoliDayPrice}"
+                                            state="None" class="sapUiLargeMarginBegin"/>
+
+                                        <Title text="{InputData>/sTotalRoomPrice}" titleStyle="H2" width="23rem"
+                                            textAlign="End" class="sapUiLargeMarginEnd"/>
+                                        <Label width="30rem"/>
+                                    </layout:VerticalLayout>
+
+                                    <layout:VerticalLayout>
+                                        <Title text="옵션 가격" titleStyle="H4" width="23rem"
+                                            textAlign="Begin" class="sapUiSmallMarginBegin"/>
+                                        <Text id="optText0" text="" textAlign="End" width="13rem" visible="false"/>
+                                        <Text id="optText1" text="" textAlign="End" width="13rem" visible="false"/>
+                                        <Text id="optText2" text="" textAlign="End" width="13rem" visible="false"/>
+                                        <Text id="optText3" text="" textAlign="End" width="13rem" visible="false"/>
+                                        <Text id="optText4" text="" textAlign="End" width="13rem" visible="false"/>
+                                        <Text id="optText5" text="" textAlign="End" width="13rem" visible="false"/>
+                                        <Text id="optText6" text="" textAlign="End" width="13rem" visible="false"/>
+                                        <Text id="optText7" text="" textAlign="End" width="13rem" visible="false"/>
+                                        <Text id="optText8" text="" textAlign="End" width="13rem" visible="false"/>
+                                        <Text id="optText9" text="" textAlign="End" width="13rem" visible="false"/>
+
+                                        <Title text="{InputData>/sTotalOptPrice}" titleStyle="H2" width="23rem"
+                                            textAlign="End" class="sapUiLargeMarginEnd"/>
+                                        <Label width="30rem"/>
+
+                                        
+                                        <Title text="등급 할인" titleStyle="H4" width="23rem"
+                                            textAlign="Begin" class="sapUiSmallMarginBegin"/>
+                                        <ObjectAttribute title="고객 등급 " class=" sapUiMediumMarginBegin"
+                                            text="{view3>/sCustType}"/>
+                                        
+                                        <Title text="- {InputData>/sCustDiscountPrice}" titleStyle="H2" width="23rem"
+                                            textAlign="End" class="sapUiLargeMarginEnd"/>
+                                        <Label width="30rem"/>
+                                        
+                                        <Text text="요금 합계" class="sapUiMediumMarginTop sapUiMediumMarginBegin"/>
+                                        <Title text="{InputData>/sFinalPrice}" titleStyle="H1" width="23rem"
+                                            textAlign="End" class="sapUiLargeMarginEnd"/>
+                                    </layout:VerticalLayout>
+                                </layout:HorizontalLayout>
+                            </f:DynamicPageHeader>
+                        </f:header>
+                        <f:content>
+                        </f:content>
+                    </f:DynamicPage>                   
+                </form:SimpleForm>
+            </VBox>
+        </HBox>
+    </Page>
+</mvc:View>
+ 

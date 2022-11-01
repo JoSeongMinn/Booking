@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZGWC2SD1008_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="Login" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Custid"/>
+                    <PropertyRef Name="Password"/>
+                </Key>
+                <Property Name="Custid" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="고객 ID"/>
+                <Property Name="Password" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="우편 번호"/>
+                <Property Name="Note" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="비고"/>
+            </EntityType>
+            <EntityType Name="BookCheck" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Roomid"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="지점 코드"/>
+                <Property Name="Roomid" Type="Edm.String" Nullable="false" MaxLength="9" sap:unicode="false" sap:label="객실 번호"/>
+                <Property Name="Roomno" Type="Edm.String" MaxLength="5" sap:unicode="false" sap:label="객실 호수"/>
+                <Property Name="Roomtp" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="객실 타입"/>
+                <Property Name="Rmrate" Type="Edm.String" MaxLength="16" sap:unicode="false" sap:label="객실 가격"/>
+                <Property Name="Adult" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="성인 인원"/>
+                <Property Name="Child" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="아동 인원"/>
+                <Property Name="Indat" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Check-In"/>
+                <Property Name="Outdat" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Check-Out"/>
+                <Property Name="Note" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="비고"/>
+            </EntityType>
+            <EntityType Name="BookOption" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Custtype"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="지점 명"/>
+                <Property Name="Roomid" Type="Edm.String" MaxLength="9" sap:unicode="false" sap:label="객실 ID"/>
+                <Property Name="Custid" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="고객 ID"/>
+                <Property Name="Custtype" Type="Edm.String" Nullable="false" MaxLength="15" sap:unicode="false" sap:label="고객 타입"/>
+                <Property Name="Custlnm" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="고객 성"/>
+                <Property Name="Custfnm" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="고객 이름"/>
+                <Property Name="Custtel" Type="Edm.String" MaxLength="30" sap:unicode="false" sap:label="고객 연락처"/>
+                <Property Name="Custemail" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="고객 이메일"/>
+                <Property Name="Custdsct" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="고객 할인율"/>
+                <Property Name="Roomdsct" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="객실 가격 할인률"/>
+                <Property Name="Roomprmm" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="객실 가격 할증률"/>
+                <Property Name="Dowprmm" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="요일 가격 할증률"/>
+                <Property Name="Holiprmm" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="휴일 가격 할증률"/>
+                <Property Name="Optionnm" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="예약 옵션 명"/>
+                <Property Name="Optprice" Type="Edm.String" MaxLength="16" sap:unicode="false" sap:label="예약 옵션 가격"/>
+                <Property Name="Note" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="비고"/>
+            </EntityType>
+            <EntityType Name="BookFinish" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Note"/>
+                </Key>
+                <Property Name="Plant" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="지점 코드"/>
+                <Property Name="Roomid" Type="Edm.String" MaxLength="9" sap:unicode="false" sap:label="객실 번호"/>
+                <Property Name="Custid" Type="Edm.String" MaxLength="15" sap:unicode="false" sap:label="고객 ID"/>
+                <Property Name="Indat" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Check-In 날짜"/>
+                <Property Name="Outdat" Type="Edm.String" MaxLength="8" sap:unicode="false" sap:label="Check-Out 날짜"/>
+                <Property Name="CustnoA" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="성인 인원"/>
+                <Property Name="CustnoC" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="아동 인원"/>
+                <Property Name="Extbed" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="추가 침대"/>
+                <Property Name="ExtbedB" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="유아용 침대"/>
+                <Property Name="Addlno" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="추가 인원"/>
+                <Property Name="Mealno" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="조식 인원"/>
+                <Property Name="Wlcamnt" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="웰컴 어메니티"/>
+                <Property Name="Erchk" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="얼리 체크인"/>
+                <Property Name="Ltchk" Type="Edm.String" MaxLength="1" sap:unicode="false" sap:label="레이트 체크아웃"/>
+                <Property Name="Rqtext" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="요청 사항 텍스트"/>
+                <Property Name="Paycost" Type="Edm.String" MaxLength="16" sap:unicode="false" sap:label="결제 비용"/>
+                <Property Name="Paymeth" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="결제 방법"/>
+                <Property Name="Eta" Type="Edm.String" MaxLength="6" sap:unicode="false" sap:label="예상 도착 시간"/>
+                <Property Name="Return" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="ReturnCode"/>
+                <Property Name="Result" Type="Edm.String" MaxLength="255" sap:unicode="false" sap:label="Result"/>
+                <Property Name="Note" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="비고"/>
+            </EntityType>
+            <EntityContainer Name="ZGWC2SD1008_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="LoginSet" EntityType="ZGWC2SD1008_SRV.Login" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="BookCheckSet" EntityType="ZGWC2SD1008_SRV.BookCheck" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="BookOptionSet" EntityType="ZGWC2SD1008_SRV.BookOption" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="BookFinishSet" EntityType="ZGWC2SD1008_SRV.BookFinish" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZGWC2SD1008_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZGWC2SD1008_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
