@@ -76,8 +76,10 @@ sap.ui.define([
                 var oView2Model = this.getView().getModel("view2");
 
                 if(this.getView().byId("application-ZC201_BOOKING-display-component---View2--filterbar-btnGo")){
-                    this.getView().byId("application-ZC201_BOOKING-display-component---View2--filterbar-btnGo").setText("검색");
-                    this.getView().byId("application-ZC201_BOOKING-display-component---View2--filterbar-btnGo").addStyleClass("sapUiTinyMargin");
+                    if(this.getView().byId("application-ZC201_BOOKING-display-component---View2--filterbar-btnGo").getText() !== '검색'){
+                        this.getView().byId("application-ZC201_BOOKING-display-component---View2--filterbar-btnGo").setText("검색");
+                        this.getView().byId("application-ZC201_BOOKING-display-component---View2--filterbar-btnGo").addStyleClass("sapUiTinyMargin");
+                    }
                 }
 
                 var sPlant  = oCompoModel.getProperty("/sPlant").substring(10,11),
@@ -286,13 +288,12 @@ sap.ui.define([
                             if(bBedType) { oBedType.push(aBedType); }
                             if(bViewType){ oViewType.push(aViewType); }
                         };
-
                         oView2Model.setProperty("/oRoomData", oRoomData);
                         oView2Model.setProperty("/oRoomType", oRoomType);
                         oView2Model.setProperty("/oBedType",  oBedType);
                         oView2Model.setProperty("/oViewType", oViewType);
                         console.log("Success");
-                    },
+                    }.bind(this),
                     error: function (oError) {
                         console.log("Error")
                     }
@@ -480,6 +481,12 @@ sap.ui.define([
                 oCompoModel.setProperty("/sPrice",     sPrice);
                 oCompoModel.setProperty("/sRoomClass", sRoomClass);
                 this.getRouter().navTo("View3");
+            },
+
+            onExit: function(){                
+                if(this.getView().byId("application-ZC201_BOOKING-display-component---View2--group1")){
+                    this.getView().byId("application-ZC201_BOOKING-display-component---View2--group1").destroy()
+                }
             }
 
         });

@@ -430,148 +430,148 @@ sap.ui.define([
                 /**
                  * 일반 결제
                  */
-                // switch (sPaymentMethod){
-                //     case '카드결제':
-                //         oCompoModel.setProperty('/sPaymentMethod', 'Card');
+                switch (sPaymentMethod){
+                    case '카드결제':
+                        oCompoModel.setProperty('/sPaymentMethod', 'Card');
 
-                //         tossPayments.requestPayment('카드', {
-                //             amount: iFinalPrice,
-                //             orderId: sOrderId,
-                //             orderName: sOrderName,
-                //             customerName: sCustName,
-                //             customerEmail: sCustEmail,
-                //             successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
-                //             failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6'
-                //         });
-                //         break;
+                        tossPayments.requestPayment('카드', {
+                            amount: iFinalPrice,
+                            orderId: sOrderId,
+                            orderName: sOrderName,
+                            customerName: sCustName,
+                            customerEmail: sCustEmail,
+                            successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
+                            failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6'
+                        });
+                        break;
                     
-                //     case '계좌이체':
-                //         oCompoModel.setProperty('/sPaymentMethod', 'Account');
+                    case '계좌이체':
+                        oCompoModel.setProperty('/sPaymentMethod', 'Account');
                         
-                //         tossPayments.requestPayment('계좌이체',{
-                //             amount: iFinalPrice,
-                //             orderId: sOrderId,
-                //             orderName: sOrderName,
-                //             customerName: sCustName,
-                //             customerEmail: sCustEmail,
-                //             successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
-                //             failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6'
-                //         });
-                //         break;
+                        tossPayments.requestPayment('계좌이체',{
+                            amount: iFinalPrice,
+                            orderId: sOrderId,
+                            orderName: sOrderName,
+                            customerName: sCustName,
+                            customerEmail: sCustEmail,
+                            successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
+                            failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6'
+                        });
+                        break;
                     
-                //     case '휴대폰':
-                //         oCompoModel.setProperty('/sPaymentMethod', 'Phone');
+                    case '휴대폰':
+                        oCompoModel.setProperty('/sPaymentMethod', 'Phone');
                         
-                //         tossPayments.requestPayment('휴대폰',{
-                //             amount: iFinalPrice,
-                //             orderId: sOrderId,
-                //             orderName: sOrderName,
-                //             customerName: sCustName,
-                //             customerEmail: sCustEmail,
-                //             successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
-                //             failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6'
-                //         });
-                //         break;
+                        tossPayments.requestPayment('휴대폰',{
+                            amount: iFinalPrice,
+                            orderId: sOrderId,
+                            orderName: sOrderName,
+                            customerName: sCustName,
+                            customerEmail: sCustEmail,
+                            successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
+                            failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6'
+                        });
+                        break;
 
-                //     case '상품권':
-                //         oCompoModel.setProperty('/sPaymentMethod', 'Voucher');
+                    case '상품권':
+                        oCompoModel.setProperty('/sPaymentMethod', 'Voucher');
                         
-                //         tossPayments.requestPayment(sPaymentDetail,{
-                //             amount: iFinalPrice,
-                //             orderId: sOrderId,
-                //             orderName: sOrderName,
-                //             customerName: sCustName,
-                //             customerEmail: sCustEmail,
-                //             successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
-                //             failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6'
-                //         });
-                //         break;
+                        tossPayments.requestPayment(sPaymentDetail,{
+                            amount: iFinalPrice,
+                            orderId: sOrderId,
+                            orderName: sOrderName,
+                            customerName: sCustName,
+                            customerEmail: sCustEmail,
+                            successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
+                            failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6'
+                        });
+                        break;
                     
-                //     case '앱카드':
-                //         oCompoModel.setProperty('/sPaymentMethod', 'AppCard');
+                    case '앱카드':
+                        oCompoModel.setProperty('/sPaymentMethod', 'AppCard');
                         
-                //         tossPayments.requestPayment('카드',{
-                //             amount: iFinalPrice,
-                //             orderId: sOrderId,
-                //             orderName: sOrderName,
-                //             customerName: sCustName,
-                //             customerEmail: sCustEmail,
-                //             successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
-                //             failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6',
-                //             flowMode: 'DIRECT',
-                //             cardCompany: sPaymentDetail
-                //         });
-                //         break;                        
-                // }
+                        tossPayments.requestPayment('카드',{
+                            amount: iFinalPrice,
+                            orderId: sOrderId,
+                            orderName: sOrderName,
+                            customerName: sCustName,
+                            customerEmail: sCustEmail,
+                            successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
+                            failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6',
+                            flowMode: 'DIRECT',
+                            cardCompany: sPaymentDetail
+                        });
+                        break;                        
+                }
 
                 /**
                  * 간편 결제
                  */
-                //  switch (sPaymentMethod){
-                //     case '토스페이':
-                //         oCompoModel.setProperty('/sPaymentMethod', 'TossPay');
+                 switch (sPaymentMethod){
+                    case '토스페이':
+                        oCompoModel.setProperty('/sPaymentMethod', 'TossPay');
 
-                //         tossPayments.requestPayment('카드', {
-                //             amount: iFinalPrice,
-                //             orderId: sOrderId,
-                //             orderName: sOrderName,
-                //             customerName: sCustName,
-                //             customerEmail: sCustEmail,
-                //             successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
-                //             failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6',
-                //             flowMode: 'DIRECT',
-                //             easyPay: sPaymentMethod
-                //         });
-                //         break;
+                        tossPayments.requestPayment('카드', {
+                            amount: iFinalPrice,
+                            orderId: sOrderId,
+                            orderName: sOrderName,
+                            customerName: sCustName,
+                            customerEmail: sCustEmail,
+                            successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
+                            failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6',
+                            flowMode: 'DIRECT',
+                            easyPay: sPaymentMethod
+                        });
+                        break;
                     
-                //     case '네이버페이':
-                //         oCompoModel.setProperty('/sPaymentMethod', 'NaverPay');
+                    case '네이버페이':
+                        oCompoModel.setProperty('/sPaymentMethod', 'NaverPay');
                         
-                //         tossPayments.requestPayment('카드',{
-                //             amount: iFinalPrice,
-                //             orderId: sOrderId,
-                //             orderName: sOrderName,
-                //             customerName: sCustName,
-                //             customerEmail: sCustEmail,
-                //             successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
-                //             failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6',
-                //             flowMode: 'DIRECT',
-                //             easyPay: sPaymentMethod
-                //         });
-                //         break;
+                        tossPayments.requestPayment('카드',{
+                            amount: iFinalPrice,
+                            orderId: sOrderId,
+                            orderName: sOrderName,
+                            customerName: sCustName,
+                            customerEmail: sCustEmail,
+                            successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
+                            failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6',
+                            flowMode: 'DIRECT',
+                            easyPay: sPaymentMethod
+                        });
+                        break;
                     
-                //     case '삼성페이':
-                //         oCompoModel.setProperty('/sPaymentMethod', 'SamsungPay');
+                    case '삼성페이':
+                        oCompoModel.setProperty('/sPaymentMethod', 'SamsungPay');
                         
-                //         tossPayments.requestPayment('카드',{
-                //             amount: iFinalPrice,
-                //             orderId: sOrderId,
-                //             orderName: sOrderName,
-                //             customerName: sCustName,
-                //             customerEmail: sCustEmail,
-                //             successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
-                //             failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6',
-                //             flowMode: 'DIRECT',
-                //             easyPay: sPaymentMethod
-                //         });
-                //         break;
+                        tossPayments.requestPayment('카드',{
+                            amount: iFinalPrice,
+                            orderId: sOrderId,
+                            orderName: sOrderName,
+                            customerName: sCustName,
+                            customerEmail: sCustEmail,
+                            successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
+                            failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6',
+                            flowMode: 'DIRECT',
+                            easyPay: sPaymentMethod
+                        });
+                        break;
                     
-                //     case 'LG페이':
-                //         oCompoModel.setProperty('/sPaymentMethod', 'LGPay');
+                    case 'LG페이':
+                        oCompoModel.setProperty('/sPaymentMethod', 'LGPay');
                         
-                //         tossPayments.requestPayment('카드',{
-                //             amount: iFinalPrice,
-                //             orderId: sOrderId,
-                //             orderName: sOrderName,
-                //             customerName: sCustName,
-                //             customerEmail: sCustEmail,
-                //             successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
-                //             failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6',
-                //             flowMode: 'DIRECT',
-                //             easyPay: sPaymentMethod
-                //         });
-                //         break;                        
-                // }
+                        tossPayments.requestPayment('카드',{
+                            amount: iFinalPrice,
+                            orderId: sOrderId,
+                            orderName: sOrderName,
+                            customerName: sCustName,
+                            customerEmail: sCustEmail,
+                            successUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView5',
+                            failUrl: 'https://edu.bgis.co.kr:8443/sap/bc/ui2/flp#ZC201_BOOKING-display&/goView6',
+                            flowMode: 'DIRECT',
+                            easyPay: sPaymentMethod
+                        });
+                        break;                        
+                }
             }
 
         });

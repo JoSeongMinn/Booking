@@ -193,7 +193,7 @@ sap.ui.define([
             },
 
             onAdd: function(oEvent){
-                var oCompoModel = this.getView().getModel("InputData")
+                var oCompoModel = this.getView().getModel("InputData");
                 var oView3Model = this.getView().getModel("view3");
                 var oOptData    = oView3Model.getProperty("/oOptData");
                 var sSelectId   = oEvent.mParameters.id;
@@ -205,10 +205,14 @@ sap.ui.define([
                 var iAddition   = oView3Model.getProperty("/iAddition");
                 var iCustNum    = oCompoModel.getProperty("/iAdultNum") + 
                     oCompoModel.getProperty("/iChildNum") + oCompoModel.getProperty("/iBabyNum");
-                debugger;
+                var iPeriod     = parseInt(oCompoModel.getProperty("/iWeekDay")) + 
+                    parseInt(oCompoModel.getProperty("/iWeekendDay")) + 
+                    parseInt(oCompoModel.getProperty("/iHoliday"));
                 /**
                  * 추가 인원 만큼 고객 인원 추가
                  */
+
+                
                 iCustNum += iAddition;
 
                 switch(sOptName) {
@@ -234,9 +238,22 @@ sap.ui.define([
                             oOptData[sOrder].Quantity += 1; 
                         };
                         break;
+                }                
+                
+                switch(sOptName) {
+                    case '조식 추가':
+                        oOptData[sOrder].Total = iOptPrice * oOptData[sOrder].Quantity * ( iPeriod - 1 );
+                        break;
+
+                    case '추가 인원':
+                        oOptData[sOrder].Total = iOptPrice * oOptData[sOrder].Quantity * iPeriod;
+                        break;
+
+                    default:
+                        oOptData[sOrder].Total = iOptPrice * oOptData[sOrder].Quantity;
+                        break;
                 }
 
-                oOptData[sOrder].Total = iOptPrice * oOptData[sOrder].Quantity;
                 oView3Model.setProperty("/oOptData", oOptData);
 
                 this._calcPrice();
@@ -244,6 +261,7 @@ sap.ui.define([
             },
 
             onLess: function(oEvent){
+                var oCompoModel = this.getView().getModel("InputData");
                 var oView3Model = this.getView().getModel("view3");
                 var iAddition   = oView3Model.getProperty("/iAddition");
                 var oOptData    = oView3Model.getProperty("/oOptData");
@@ -257,6 +275,9 @@ sap.ui.define([
                 var sMealPrice  = oView3Model.getProperty("/oOptData").find(e => e.Option === '조식 추가').Price;
                 var iMealPrice  = parseInt(sMealPrice.replace(" 원", "").replace(",", ""))
                 var iMealIndex  = oView3Model.getProperty("/oOptData").findIndex(e => e.Option === '조식 추가');
+                var iPeriod     = parseInt(oCompoModel.getProperty("/iWeekDay")) + 
+                    parseInt(oCompoModel.getProperty("/iWeekendDay")) + 
+                    parseInt(oCompoModel.getProperty("/iHoliday"));
 
                 switch(sOptName) {
                     case '추가 인원':
@@ -282,7 +303,12 @@ sap.ui.define([
                 }
 
                 oOptData[sOrder].Total = iOptPrice * oOptData[sOrder].Quantity;
-                oOptData[iMealIndex].Total = iMealPrice * oOptData[iMealIndex].Quantity;
+                oOptData[iMealIndex].Total = iMealPrice * oOptData[iMealIndex].Quantity * ( iPeriod - 1 );
+
+                if(sOptName == '추가 인원'){
+                    oOptData[sOrder].Total = iOptPrice * oOptData[sOrder].Quantity * iPeriod;
+                }
+
                 oView3Model.setProperty("/oOptData", oOptData);
 
                 this._calcPrice();
@@ -328,6 +354,11 @@ sap.ui.define([
                     sCustDiscountPrice = "",
                     iFinalPrice = 0,
                     sFinalPrice = "";
+                
+                var iPeriod     = parseInt(oCompoModel.getProperty("/iWeekDay")) + 
+                    parseInt(oCompoModel.getProperty("/iWeekendDay")) + 
+                    parseInt(oCompoModel.getProperty("/iHoliday"));
+                var iMealday    = iPeriod - 1;
 
                 if( 4 < iPriceLength && iPriceLength < 8 ){
                     iUnitPrice = parseInt(sUnitPrice.replace(" 원", "").replace(",", ""));
@@ -349,15 +380,31 @@ sap.ui.define([
                 sHoliDayPrice = this._setPrice(iHoliDayPrice);
 
                 for( var i=0; i< oOptData.length; i++ ){
-                    iOptPrice = parseInt(oOptData[i].Price.replace(" 원", "").replace(",", ""));
-                    oOptData[i].Total  = iOptPrice * oOptData[i].Quantity;
+                    // iOptPrice = parseInt(oOptData[i].Price.replace(" 원", "").replace(",", ""));
+                    // oOptData[i].Total  = iOptPrice * oOptData[i].Quantity;
                     oOptData[i].sTotal = this._setPrice(oOptData[i].Total);
 
                     iTotalOptPrice += oOptData[i].Total;
 
                     if(oOptData[i].Quantity !== 0){
-                        sTotalOptDesc += oOptData[i].Option + "(" + oOptData[i].Quantity + "): " 
-                        +  oOptData[i].sTotal + "/";
+
+                        switch(oOptData[i].Option){
+                            case '추가 인원':
+                                sTotalOptDesc += oOptData[i].Option + "(" + oOptData[i].Quantity + ")[" 
+                                + iPeriod + "일]: " +  oOptData[i].sTotal + "/";
+                                break;
+                            case '조식 추가':
+                                sTotalOptDesc += oOptData[i].Option + "(" + oOptData[i].Quantity + ")[" 
+                                + iMealday + "일]: " +  oOptData[i].sTotal + "/";
+                                break;
+                            default:
+                                sTotalOptDesc += oOptData[i].Option + "(" + oOptData[i].Quantity + "): " 
+                                +  oOptData[i].sTotal + "/";
+                                break;
+                        }
+
+                        // sTotalOptDesc += oOptData[i].Option + "(" + oOptData[i].Quantity + "): " 
+                        // +  oOptData[i].sTotal + "/";
                     }
 
                     if(oOptData[i].sTotal){
