@@ -103,7 +103,6 @@ sap.ui.define([
                     sNumInfo    = oViewModel.getProperty("/sNumInfo"),
                     sCheckIn    = this.getView().byId("checkInInfo").getText(),
                     sCheckOut   = this.getView().byId("checkOutInfo").getText();
-                    debugger
                     
                 if(sPlant == null){
                     MessageToast.show("예약 지점을 선택해주세요.");

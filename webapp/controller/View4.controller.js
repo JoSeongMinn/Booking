@@ -302,7 +302,7 @@ sap.ui.define([
 
                 oCompoModel.setProperty('sCustName' , sCustName );
                 oCompoModel.setProperty('sCustEmail', sCustEmail);
-                oCompoModel.setProperty('sCustTel'  , sCustTel  );
+                oCompoModel.setProperty('sCustTel'  , sCustTel  );   
 
                 switch (sPaymentMethod){
                     case '카드결제':
@@ -414,6 +414,12 @@ sap.ui.define([
                     Eta     : sETA,
                     Note    : sOrderId
                 };
+                
+                if(sPaymentMethod){
+                } else{
+                    MessageToast.show('결제 수단을 선택해주세요.');
+                    return;
+                }               
 
                 oModel.create('/BookFinishSet', oCreateData, {
                     success : function(data, response){
